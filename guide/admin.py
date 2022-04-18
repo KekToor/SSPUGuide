@@ -4,4 +4,3 @@ from .models import *
 
 admin.site.register(SubjectInfo)
 admin.site.register(Teacher)
-admin.site.register(Subject)

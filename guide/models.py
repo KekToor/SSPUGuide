@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 MGR = 'Mgr.'
 ING = 'Ing.'
@@ -21,7 +22,7 @@ class Teacher(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return self.name
+        return f'{self.titul} {self.name}'
 
 
 class SubjectInfo(models.Model):
@@ -42,11 +43,30 @@ class Subject(models.Model):
     classroom = models.CharField(max_length=10, help_text='Zadejte Název Učebny', verbose_name='Classroom Name')
 
     class Meta:
-        ordering = ['name']
+        ordering = ['name.name']
 
     def __str__(self):
         return self.name.name
 
+
+class Lang:
+    pass
+
+
+class Code(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Obsah kódu', help_text='Krátce popište, co je cílem kódu')
+    desc = models.TextField(verbose_name='Popis kódu', help_text='Stručně popište, jak bude kód fungovat')
+    alignment = models.ForeignKey(SubjectInfo, on_delete=models.CASCADE)
+    lang = models.CharField(max_length=30, verbose_name='Programovací jazyk', help_text='Zadejte název programovacího jazyka')
+    difficulty = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(10)],
+                                     verbose_name='Obtížnost kódu (1-10)', help_text='Zadejte obtížnost kódu v hodnotách od 1 do 10')
+    # code = models.FileField()
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f'{self.lang} - {self.name}'
 
 
 
