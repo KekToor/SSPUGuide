@@ -1,6 +1,14 @@
 {% extends 'def.html' %}
+{% load static %}
 {% block title %} Detail kódu {% endblock %}
 {% block content %}
-    <a class="fa fa-chevron-left pt-3 text-decoration-none text-dark" href="{% url 'code_list' %}">
-    </a>
+    <div class="row">
+        <a class=" col-3 fa fa-chevron-left pt-3 text-decoration-none text-dark" href="{% url 'code_list' %}"></a>
+        <h3 class="col-6 display-5 text-center fw-bold"> {{ code_detail.name }} </h3>
+    </div>
+    <hr>
+    <div class="row">
+        <img class="d-flex justify-content-center img-fluid" src="{% static 'img/under.webp' %}">
+    </div>
+
 {% endblock %}

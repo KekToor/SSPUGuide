@@ -10,7 +10,7 @@
             </div>
             <div class="col-3 display-6"><span class="badge bg-success">{{ code.difficulty }}</span></div>
         </div>
-
+        <div>Jazyk/framework: <b>{{ code.lang.get }}</b></div>
         <hr>
         <p>{{ code.desc }}</p>
         <button class="btn btn-dark"><a class="text-decoration-none text-light" href="{% url 'code_detail' code.pk %}">Více informací</a></button>
