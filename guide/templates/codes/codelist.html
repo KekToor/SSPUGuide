@@ -1,0 +1,21 @@
+{% extends 'def.html' %}
+{% block title %} List kódů {% endblock %}
+{% block content %}
+    <div class="row">
+    {% for code in code_list %}
+    <div class="border rounded col-xl-3 col-lg-4 col-md-12 m-2 py-2">
+        <div class="row">
+            <div class="col-9">
+                <h3 class="display-6 fw-bold"><a class="text-decoration-none text-dark" href="{% url 'code_detail' code.pk %}"> {{ code.name }} </a></h3>
+            </div>
+            <div class="col-3 display-6"><span class="badge bg-success">{{ code.difficulty }}</span></div>
+        </div>
+
+        <hr>
+        <p>{{ code.desc }}</p>
+        <button class="btn btn-dark"><a class="text-decoration-none text-light" href="{% url 'code_detail' code.pk %}">Více informací</a></button>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+

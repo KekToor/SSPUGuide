@@ -43,15 +43,15 @@ class Subject(models.Model):
     classroom = models.CharField(max_length=10, help_text='Zadejte Název Učebny', verbose_name='Classroom Name')
 
     class Meta:
-        ordering = ['name.name']
+        ordering = ['name__name']
 
     def __str__(self):
         return self.name.name
 
 
-class Lang:
+class Lang(models.Model):
     name = models.CharField(max_length=100, verbose_name='Název jazyka', help_text='Název jazyka')
-    desc = models.TextField(verbose_name='Popis kódu', help_text='Stručně popište, jak bude kód fungovat')
+    desc = models.TextField(verbose_name='Popis jazyka', help_text='Popište programovací jazyk')
 
     class Meta:
         ordering = ['name']
@@ -73,7 +73,7 @@ class Code(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return f'{self.lang} - {self.name}'
+        return f'{self.lang.all()[0]} - {self.name}'
 
 
 
