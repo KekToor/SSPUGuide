@@ -1,6 +1,10 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
+def code_path(instance, filename):
+    return 'media' + '/codes/' + str(instance.id) + '/' + filename
+
+
 MGR = 'Mgr.'
 ING = 'Ing.'
 RNDR = 'RNDr.'
@@ -67,7 +71,7 @@ class Code(models.Model):
     lang = models.ManyToManyField(Lang, help_text='Vyberte název jazyka')
     difficulty = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(10)],
                                      verbose_name='Obtížnost kódu (1-10)', help_text='Zadejte obtížnost kódu v hodnotách od 1 do 10')
-    # code = models.FileField()
+    code = models.FileField(upload_to=code_path, null=True, verbose_name='Zdrojový kód')
 
     class Meta:
         ordering = ['name']

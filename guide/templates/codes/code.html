@@ -5,10 +5,11 @@
     <div class="row">
         <a class=" col-3 fa fa-chevron-left pt-3 text-decoration-none text-dark" href="{% url 'code_list' %}"></a>
         <h3 class="col-6 display-5 text-center fw-bold"> {{ code_detail.name }} </h3>
+        <p id="code"><pre><code>{{ code_detail.code.read}}</code></pre></p>
     </div>
     <hr>
     <div class="row">
         <img class="d-flex justify-content-center img-fluid" src="{% static 'img/under.webp' %}">
     </div>
-
+    <script src={% static 'js/code.js' %}></script>
 {% endblock %}

@@ -9,7 +9,6 @@ def index(req):
     }
     return render(req, 'index.html', context=context)
 
-
 class CodeView(ListView):
     model = Code
     context_object_name = 'code_list'
