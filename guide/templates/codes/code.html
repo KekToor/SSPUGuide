@@ -1,11 +1,21 @@
 {% extends 'def.html' %}
 {% load static %}
+{% load custom_tags %}
 {% block title %} Detail kódu {% endblock %}
+{% block css %} <link rel="stylesheet" href="{% static 'css/dracula.css' %}"> {% endblock %}
 {% block content %}
     <div class="row">
         <a class=" col-3 fa fa-chevron-left pt-3 text-decoration-none text-dark" href="{% url 'code_list' %}"></a>
         <h3 class="col-6 display-5 text-center fw-bold"> {{ code_detail.name }} </h3>
-        <p id="code"><pre><code>{{ code_detail.code.read}}</code></pre></p>
+        <div class="row">
+            <div class="col-4">
+                <p>{{ code_detail.desc }}</p>
+            </div>
+            <div class="col-8">
+                <p id="code"><pre class="h-25 rounded"><code>{{ code_detail.code | readfile }}</code></pre></p>
+            </div>
+        </div>
+
     </div>
     <hr>
     <div class="row">
