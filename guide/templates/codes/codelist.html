@@ -1,6 +1,11 @@
 {% extends 'def.html' %}
 {% block title %} List kódů {% endblock %}
 {% block content %}
+     <div class="row">
+        <a class=" col-3 fa fa-chevron-left pt-3 text-decoration-none text-dark" href="{% url 'index' %}"></a>
+        <h3 class="col-6 display-5 text-center fw-bold"> Seznam kódů </h3>
+        <hr>
+    </div>
     <div class="row">
     {% for code in code_list %}
     <div class="border rounded col-xl-3 col-lg-4 col-md-12 m-2 py-2">
@@ -8,11 +13,10 @@
             <div class="col-9">
                 <h3 class="display-6 fw-bold"><a class="text-decoration-none text-dark" href="{% url 'code_detail' code.pk %}"> {{ code.name }} </a></h3>
             </div>
-            <div class="col-3 display-6"><span class="badge bg-success">{{ code.difficulty }}</span></div>
+            <div class="col-3 display-6 mr-3"><span class="badge bg-success">{{ code.difficulty }}</span></div>
         </div>
         <div>Jazyk/framework: <b>{{ code.lang.get }}</b></div>
         <hr>
-        <p>{{ code.desc }}</p>
         <button class="btn btn-dark"><a class="text-decoration-none text-light" href="{% url 'code_detail' code.pk %}">Více informací</a></button>
     </div>
     {% endfor %}

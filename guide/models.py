@@ -4,6 +4,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 def code_path(instance, filename):
     return 'media' + '/codes/' + str(instance.id) + '/' + filename
 
+def sit_path(instance, filename):
+    return 'media' + '/sit/' + str(instance.id) + '/' + filename
+
 
 MGR = 'Mgr.'
 ING = 'Ing.'
@@ -78,6 +81,23 @@ class Code(models.Model):
 
     def __str__(self):
         return f'{self.lang.all()[0]} - {self.name}'
+
+
+class Sit(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Obsah kódu', help_text='Krátce popište, co je cílem kódu')
+    desc = models.TextField(verbose_name='Popis kódu', help_text='Stručně popište, jak bude kód fungovat')
+    shortdesc = models.TextField(verbose_name='Stručný popis kódu', help_text='Stručně popište, jak bude kód fungovat')
+    difficulty = models.IntegerField(blank=True, null=True,
+                                    validators=[MinValueValidator(1), MaxValueValidator(10)],
+                                    verbose_name='Obtížnost kódu (1-10)',
+                                    help_text='Zadejte obtížnost kódu v hodnotách od 1 do 10')
+    sit = models.FileField(upload_to=sit_path, null=True, verbose_name='Zdrojový kód')
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 

@@ -1,0 +1,27 @@
+{% extends 'def.html' %}
+{% block title %} List příkladů do sítí {% endblock %}
+{% block content %}
+     <div class="row">
+        <a class=" col-3 fa fa-chevron-left pt-3 text-decoration-none text-dark" href="{% url 'index' %}"></a>
+        <h3 class="col-6 display-5 text-center fw-bold"> Seznam příkladů do sítí </h3>
+        <hr>
+    </div>
+    <div class="row">
+    {% for sit in sit_list %}
+    <div class="border rounded col-xl-3 col-lg-4 col-md-12 m-2 py-2">
+        <div class="row">
+            <div class="col-9">
+                <h3 class="display-6 fw-bold"><a class="text-decoration-none text-dark" href="{% url 'sit_detail' sit.pk %}"> {{ sit.name }} </a></h3>
+            </div>
+            <div class="col-3 display-6 mr-3"><span class="badge bg-primary">{{ sit.difficulty }}</span></div>
+        </div>
+        <hr>
+        <div class="row">
+            <p>{{ sit.shortdesc }}</p>
+        </div>
+        <hr>
+        <button class="btn btn-dark"><a class="text-decoration-none text-light" href="{% url 'sit_detail' sit.pk %}">Více informací</a></button>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock %}
