@@ -12,20 +12,16 @@
         </div>
         <hr>
     </div>
-    <div class="row h-50">
-        <div class="col-4 pt-3">
-            <div class="h-25">
-                <p>{{ code_detail.desc }}</p>
-            </div>
-            <div class="d-flex justify-content-center">
-
-            </div>
-        </div>
-
-        <div class="col-8">
-            <p id="code"><pre class="rounded h-50"><code>{{ code_detail.code | readfile }}</code></pre></p>
-        </div>
+    <div class="row">
+        <h2 class="fw-bold"style="">Popis</h2>
+        <p>{{ code_detail.desc }}</p>
     </div>
     <hr>
+    <h2 class="fw-bold">Kód</h2>
+    <div class="row h-50">
+        <div class="col-12">
+            <p id="code"><pre class="rounded"><code>{{ code_detail.code | readfile }}</code></pre></p>
+        </div>
+    </div>
     <script src={% static 'js/code.js' %}></script>
 {% endblock %}
